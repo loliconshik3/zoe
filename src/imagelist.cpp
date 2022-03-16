@@ -143,8 +143,12 @@ void ImageList::currentItemChanged() {
     root->imageLabel->setToolTip(tags.c_str());
 
     QPixmap img(path.c_str());
-    int maxWidth = img.width() * 0.30;
-    int maxHeight = img.height() * 0.30;
+    int maxWidth = img.width() * 1;
+    int maxHeight = img.height() * 1;
+
+    if (maxWidth > 640) {maxWidth = 640;}
+    if (maxHeight > 360) {maxHeight = 360;}
+
     auto image = img.scaled(maxWidth, maxHeight, Qt::KeepAspectRatio);
     root->imageLabel->setPixmap(image);
 }
